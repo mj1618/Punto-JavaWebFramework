@@ -21,55 +21,55 @@ The following is a sample router I used in a project, creating this class is all
 A sample controller for the login is below.
 
 
-public class MySiteRoutes extends Router{
-	public void makeRoutes(Route route) {
+	public class MySiteRoutes extends Router{
+		public void makeRoutes(Route route) {
 
-		route.get("/login", 		        method(Login.class, "get"));
-		route.post("/login", 		        method(Login.class, "post"));
+			route.get("/login", 		        method(Login.class, "get"));
+			route.post("/login", 		        method(Login.class, "post"));
 
-        route.group("/",subroute->{
-            subroute.get("/images/**", 	    ctx -> fileContent("/www",ctx.getPath()));
-            subroute.get("/css/**", 		ctx -> fileContent("/www",ctx.getPath()));
-            subroute.get("/js/**", 		    ctx -> fileContent("/www",ctx.getPath()));
-            subroute.get("/fonts/**", 		ctx -> fileContent("/www",ctx.getPath()));
-            subroute.get("/plugins/**",     ctx -> fileContent("/www",ctx.getPath()));
-        });
+			route.group("/",subroute->{
+				subroute.get("/images/**", 	    ctx -> fileContent("/www",ctx.getPath()));
+				subroute.get("/css/**", 		ctx -> fileContent("/www",ctx.getPath()));
+				subroute.get("/js/**", 		    ctx -> fileContent("/www",ctx.getPath()));
+				subroute.get("/fonts/**", 		ctx -> fileContent("/www",ctx.getPath()));
+				subroute.get("/plugins/**",     ctx -> fileContent("/www",ctx.getPath()));
+			});
 
-		route.group("/", subroute -> {
-            subroute.get("/cms/files/{id}", ctx -> cmsFile( ctx.parameter("id") ) );
-			subroute.get("/", 				ctx -> redirect("/home"));
-			subroute.get("/home", 			method(Home.class, "get")).before(new Common());
-			subroute.get("/about", 			method(About.class, "get")).before(new Common());
-			subroute.get("/events", 		method(Events.class, "get")).before(new Common());
-			subroute.get("/services", 		method(Services.class, "get")).before(new Common());
-			subroute.get("/contact", 		method(Contact.class, "get")).before(new Common());
-            subroute.post("/sendmail", 	    method(Email.class, "send")).before(new Common());
-        }).filter(	ctx -> 	ctx.user().isPresent()==false,
-					ctx -> {
-						ctx.rememberPath();
-						return redirect("/login");
-		}); //Similarly you can do .before( ctx -> ...) and .after( ctx -> ...) like in laravel
+			route.group("/", subroute -> {
+				subroute.get("/cms/files/{id}", ctx -> cmsFile( ctx.parameter("id") ) );
+				subroute.get("/", 				ctx -> redirect("/home"));
+				subroute.get("/home", 			method(Home.class, "get")).before(new Common());
+				subroute.get("/about", 			method(About.class, "get")).before(new Common());
+				subroute.get("/events", 		method(Events.class, "get")).before(new Common());
+				subroute.get("/services", 		method(Services.class, "get")).before(new Common());
+				subroute.get("/contact", 		method(Contact.class, "get")).before(new Common());
+				subroute.post("/sendmail", 	    method(Email.class, "send")).before(new Common());
+			}).filter(	ctx -> 	ctx.user().isPresent()==false,
+						ctx -> {
+							ctx.rememberPath();
+							return redirect("/login");
+			}); //Similarly you can do .before( ctx -> ...) and .after( ctx -> ...) like in laravel
+		}
 	}
-}
 
 Sample login controller (returns a velocity template for GET).
 
-public class Login extends Controller{
+	public class Login extends Controller{
 
-	public Response get(HttpContext ctx){
-		return vm("/pages/login.vm");
-	}
+		public Response get(HttpContext ctx){
+			return vm("/pages/login.vm");
+		}
 
-	public Response post(HttpContext ctx){
-		if( authenticate(ctx, ctx.input("username").get(),ctx.input("password").get()) ){
-			Optional<Response> response = ctx.returnPath();
-			if(response.isPresent())
-				return response.get();
-			else
-				return redirect("/");
-		} else {
-			ctx.putAttribute("error", "Incorrect Password");
-			return redirect("/login");
+		public Response post(HttpContext ctx){
+			if( authenticate(ctx, ctx.input("username").get(),ctx.input("password").get()) ){
+				Optional<Response> response = ctx.returnPath();
+				if(response.isPresent())
+					return response.get();
+				else
+					return redirect("/");
+			} else {
+				ctx.putAttribute("error", "Incorrect Password");
+				return redirect("/login");
+			}
 		}
 	}
-}
