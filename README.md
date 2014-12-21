@@ -1,8 +1,6 @@
 Punto CMS and Web Framework
 ===========================
 
-Any feedback/comments welcome as long as its constructive, happy for people to use parts of the code or contribute as well.
-
 Taken ideas from Play Framework and Laravel, trying to create a web framework with the following properties -
 - Makes use of Java 8 functionality to improve things such as routing
 - Projects created like a normal JEE app, just needing to add the Punto dependency
