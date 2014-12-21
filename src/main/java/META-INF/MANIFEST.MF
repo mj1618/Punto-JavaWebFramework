@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Class-Path: slf4j-api-1.6.6.jar google-oauth-client-1.19.0.jar commons
+ -logging-1.1.1.jar reflections.jar commons-codec-1.3.jar guava-jdk5-1
+ 3.0.jar jackson-core-2.1.3.jar commons-fileupload-1.3.jar commons-lan
+ g-2.4.jar velocity-1.7.jar mail-1.4.1.jar google-api-services-calenda
+ r-v3-rev92-1.19.0.jar mybatis-3.2.7.jar morphia-0.108.jar jsr305-1.3.
+ 9.jar mariadb-java-client-1.1.7.jar javax.mail-api-1.5.1.jar google-h
+ ttp-client-1.19.0.jar jna-3.3.0-platform.jar google-http-client-jacks
+ on2-1.19.0.jar google-api-client-1.19.0.jar cache-api-1.0.0-PFD.jar h
+ ttpclient-4.0.1.jar commons-io-2.4.jar ehcache-2.8.3.jar google-http-
+ client-gson-1.19.0.jar activation-1.1.jar httpcore-4.0.1.jar mongo-ja
+ va-driver-2.12.3.jar commons-collections-3.2.1.jar jna-3.3.0.jar
+Main-Class: 
+
