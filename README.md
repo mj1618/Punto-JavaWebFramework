@@ -1,5 +1,4 @@
 Punto CMS and Web Framework
-Matthew James
 ===========================
 
 Any feedback/comments welcome as long as its constructive, happy for people to use parts of the code or contribute as well.
