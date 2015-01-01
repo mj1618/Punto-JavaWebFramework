@@ -1,3 +1,5 @@
+Note: this project is inactive. I made the decision to stop working on this when I realized that it was going in the wrong direction - namely it had too much functionality that wasn't polished. The web-framework functionality is done better by Spark Java, but I have started working on a new project - https://github.com/minimoCMS/minimoCMS which takes some of the ideas from Punto but does more with less.
+
 Punto CMS and Web Framework
 ===========================
 
